@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
       const currentAccount = await getCurrentUser();
       console.log("currentAccount", currentAccount)
 
-      if (currentAccount) {
+      if (currentAccount!==false) {
         setUserDetails(currentAccount);
         setIsAuthenticated(true);
         return true;

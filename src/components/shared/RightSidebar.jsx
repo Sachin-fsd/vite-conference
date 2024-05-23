@@ -3,6 +3,7 @@ import { getContacts } from '../../lib/api/api'
 import { useUserContext } from '../../context/AuthContext'
 import { Link } from 'react-router-dom'
 import UserCard from './UserCard'
+import ClipLoader from "react-spinners/ClipLoader";
 
 const RightSidebar = () => {
   const { UserDetails } = useUserContext()
@@ -18,7 +19,8 @@ const RightSidebar = () => {
   }, []);
   const { messages, users } = contacts
   if (!messages && !users) {
-    return <div>Loading...</div>
+    return 
+
   } else {
     return (
       <div className="right">

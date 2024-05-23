@@ -2,36 +2,38 @@ import React, { useEffect, useState } from 'react'
 import { signInAccount } from '../../lib/api/api'
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserContext } from "../../context/AuthContext";
+import { toast } from 'react-toastify';
 import './login.css'
 // import styles from './login.module.css'
 
 const SignInForm = () => {
+    let toastId;
+
     const { checkAuthUser } = useUserContext()
     const navigate = useNavigate()
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     async function handleSubmit() {
         if (email.trim().length > 0 && password.trim().length > 0) {
             try {
+                toastId = toast.loading("Loading Please Wait...");
                 const loggedIn = await signInAccount({ email, password });
                 if (loggedIn) {
                     checkAuthUser(); // Check user is authenticated or not
                     navigate("/")
                 } else {
-                    alert("Invalid Email or Password")
+                    toast.update(toastId, { isLoading: false, render: "Invalid Email/Password", type:"error", hideProgressBar: false, closeButton: true, delay: 500, autoClose: true });
                 }
             } catch (err) {
                 console.log(err)
+                toast.error("Something went wrong")
             }
         } else {
-            alert("Please enter all fields")
+            toast.warning("Enter all fields")
+
         }
     }
-    useEffect(() => {
-        document.getElementById("PreLoaderBar").classList.remove("show");
-        document.getElementById("PreLoaderBar").classList.add("hide");
-    }, [])
-
+   
     return (
 
         <div className='loginPage' style={{ marginTop: "-100px", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -39,33 +41,33 @@ const SignInForm = () => {
             <section id="details-ctr" className='login_section'>
                 <div id="login-ctr">
                     {/* <div id="errorBox" style={{display: "none", color: "red",zIndex: "2",fontSize: "small",margin: "-30px"}}></div> */}
-                    <div class="card">
+                    <div className="card">
                         <h2>Conference</h2>
 
-                        <div class="login_register ">
-                            <a href="#" class="login auth_active" target="blank">Login</a>
-                            <a href="/sign-up" class="register" target="blank">Signup</a>
+                        <div className="login_register ">
+                            <Link to="#" className="login auth_active" >Login</Link>
+                            <Link to="/sign-up" className="register" >Signup</Link>
                         </div>
-                        <div id="myPopup" class="popup">
-                            <div class="popup-content">
-                                <label for="" class="text-bold">Wrong Credentials</label>
-                                <button id="yesButton" class="formal-button">
+                        <div id="myPopup" className="popup">
+                            <div className="popup-content">
+                                <label htmlFor="" className="text-bold">Wrong Credentials</label>
+                                <button id="yesButton" className="formal-button">
                                     OK
                                 </button>
                             </div>
                         </div>
 
                         {/* <!-- FORMULAIRE --> */}
-                        <form class="auth_form" id="login_form" onSubmit={(e) => e.preventDefault()}>
+                        <form className="auth_form" id="login_form" onSubmit={(e) => e.preventDefault()}>
                             <input type="email" placeholder="Email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                             <input type="password" placeholder="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <button type="submit" class="login_btn" id="submit-btn" onClick={handleSubmit}>Login</button>
+                            <button type="submit" className="login_btn" id="submit-btn" onClick={handleSubmit}>Login</button>
                         </form>
 
                         {/* <!-- BOUTTON LOGIN --> */}
                         <Link to={"/forgetpwd"} style={{ color: "grey" }}>Forgot password</Link>
-                        <div class="footer_card">
-                            <p>Not Registered</p>
+                        <div className="footer_card">
+                            <p>Not Registered?</p>
                             <Link to={"/sign-up"}>Sign Up now</Link>
                         </div>
                     </div>

@@ -54,10 +54,11 @@ body {
 .progress {
   position: fixed;
   top: 0;
-  height: 5px;
+  height: 3px;
   display: block;
   width: 100%;
-  background-color: rgb(124, 102, 247);
+  /* background-color: rgb(124, 102, 247); */
+  background-color: maroon;
   border-radius: 2px;
   background-clip: padding-box;
   /*margin: 0.5rem 0 1rem 0;*/
@@ -1354,9 +1355,13 @@ main .container .middle .profile {
   display: flex;
 }
 
-
 /* Loader CSS */
-
+.Loader-react{
+  position: fixed;
+  top: 50%;
+  left: 47%;
+  /* color: #0056b3; */
+}
 .loader {
   width: 5rem;
   height: 5rem;
@@ -1371,7 +1376,7 @@ main .container .middle .profile {
   to {
     transform: rotate(360deg);
   }
-}
+} 
 
 /*====================================================================
 =            MEDIA QUERIES - SMALL LAPTOP AND BIG TABLETS            =

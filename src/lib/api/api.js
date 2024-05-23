@@ -24,7 +24,7 @@ export async function getCurrentUser() {
         return currentUser;
     } catch (error) {
         console.log(error);
-        return null;
+        return false;
     }
 }
 
@@ -68,9 +68,11 @@ export async function getContacts() {
         console.log(error);
     }
 }
-export async function getPosts() {
+export async function getPosts(page) {
     try {
-        const res = await fetch(`${config.SERVERURL}/?page=1`, {
+        console.log(page)
+        if(!page) page=1
+        const res = await fetch(`${config.SERVERURL}/?page=${page}`, {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -212,4 +214,14 @@ export async function postText(text,file,UserID) {
     } else {
       return false
     }
+  }
+
+  export async function register(formData){
+    const res =await fetch(`${config.SERVERURL}/register`,{
+        method:"POST",
+        body:formData,
+        credentials:"include",
+    })
+    console.log(res)
+    return res.ok
   }

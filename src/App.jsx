@@ -1,22 +1,27 @@
 import { Routes, Route } from "react-router-dom";
 import RootLayout from "./_root/RootLayout";
 import AuthLayout from "./_auth/AuthLayout"
-import SignInForm from "./_auth/forms/SignInForm"
+// import { ToastContainer, toast } from 'react-toastify';
 // import { Toaster } from "@/components/ui/toaster";
 
-import "./globals.css";
 import Home from "./_root/pages/Home";
 import Search from "./_root/pages/Search";
+import SignUpForm from "./_auth/forms/SignUpForm";
+import SignInForm from "./_auth/forms/SignInForm";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import "./globals.css";
 
 const App = () => {
   return (
+
     <main>
-      
+
       <Routes>
         {/* public routes */}
         <Route element={<AuthLayout />}>
           <Route path="/sign-in" element={<SignInForm />} />
-          {/* <Route path="/sign-up" element={<SignupForm />} /> */}
+          <Route path="/sign-up" element={<SignUpForm />} />
         </Route>
 
         {/* private routes */}
@@ -33,8 +38,21 @@ const App = () => {
         </Route>
       </Routes>
 
-      {/* <Toaster /> */}
+      {/* <ToastContainer /> */}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </main>
+
   );
 };
 

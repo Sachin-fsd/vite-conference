@@ -39,7 +39,8 @@ const LeftSidebar = ({ setIsThemeOpen }) => {
           <p className="text-muted">Home</p>
         </Link>
         <Link
-          to="/search"
+          to="/"
+          // to="/search"
           className={`menu-item ${activeMenuItem === "/search" ? "active" : ""}`}
           onClick={() => handleClick("/search")}
         ><span><i className="uil uil-compass"></i></span>
@@ -47,7 +48,10 @@ const LeftSidebar = ({ setIsThemeOpen }) => {
           <p className="text-muted">Search</p>
         </Link>
 
-        <Link to={"/notification"}
+        <Link
+          to="/"
+
+          // to={"/notification"}
           className={`menu-item ${activeMenuItem === "/notification" ? "active" : ""}`}
           onClick={() => handleClick("/notification")}
           id="notifications">
@@ -55,14 +59,22 @@ const LeftSidebar = ({ setIsThemeOpen }) => {
           <h3>Notifications</h3>
           <p className="text-muted">Notify</p>
         </Link>
-        <Link to={"/message"} className={`menu-item ${activeMenuItem === "/message" ? "active" : ""}`}
+        <Link
+          to="/"
+
+          // to={"/message"}
+          className={`menu-item ${activeMenuItem === "/message" ? "active" : ""}`}
           onClick={() => handleClick("/message")} id="messages-notification">
           <span><i
             className="uil uil-envelope-alt"></i></span>
           <h3>Messages</h3>
           <p className="text-muted">Chats</p>
         </Link>
-        <Link to={"/save"} className={`menu-item ${activeMenuItem === "/save" ? "active" : ""}`}
+        <Link 
+          to="/"
+
+        //  to={"/save"}
+          className={`menu-item ${activeMenuItem === "/save" ? "active" : ""}`}
           onClick={() => handleClick("/save")}><span><i className="uil uil-bookmark"></i></span>
           <h3>Bookmarks</h3>
           <p className="text-muted">Saves</p>
@@ -72,7 +84,11 @@ const LeftSidebar = ({ setIsThemeOpen }) => {
           <h3>Theme</h3>
           <p className="text-muted">Theme</p>
         </Link>
-        <Link to={"/settings"} className={`menu-item ${activeMenuItem === "/settings" ? "active" : ""}`}
+        <Link
+          to="/"
+
+        //  to={"/settings"}
+          className={`menu-item ${activeMenuItem === "/settings" ? "active" : ""}`}
           onClick={() => handleClick("/settings")} >
           <span><i
             className="uil uil-setting"></i></span>

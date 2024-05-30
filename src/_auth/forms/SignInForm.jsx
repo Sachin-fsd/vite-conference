@@ -19,6 +19,7 @@ const SignInForm = () => {
                 toastId = toast.loading("Loading Please Wait...");
                 const loggedIn = await signInAccount({ email, password });
                 if (loggedIn) {
+                    toast.dismiss()
                     checkAuthUser(); // Check user is authenticated or not
                     navigate("/")
                 } else {
